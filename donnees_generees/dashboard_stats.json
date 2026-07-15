@@ -1,0 +1,113 @@
+{
+  "n_candidats": 41298,
+  "n_offres": 2535,
+  "n_offres_texte_riche": 143,
+  "secteurs_offres_top10": {
+    "Commerce, Vente, Marketing & Distribution": 343,
+    "Pétrole, Gaz & Hydrocarbures": 328,
+    "Conseil, Stratégie & Gestion des Ressources Humaines": 264,
+    "Transport, Logistique & Supply Chain": 234,
+    "Industrie, Production & Maintenance": 220,
+    "Finance, Banque, Assurance, Comptabilité & Fiscalité": 209,
+    "Hôtellerie - Restauration": 181,
+    "Agriculture & Industrie Agroalimentaire": 101,
+    "Bâtiment, Travaux Publics & Aménagement du Territoire": 80,
+    "Informatique, Data, Télécommunications & Digital": 65
+  },
+  "metiers_demandes_top10": {
+    "Manœuvre": 2225,
+    "Chauffeur": 1449,
+    "Agent de sécurité": 1208,
+    "Etudiant": 950,
+    "Agent Commercial": 859,
+    "Informaticien": 803,
+    "Chauffeur de poids lourd": 800,
+    "Électricien": 755,
+    "Etudiante": 656,
+    "Comptable": 643
+  },
+  "secteurs_candidats_top10": {
+    "Transport, Logistique & Supply Chain": 6259,
+    "Industrie, Production & Maintenance": 5232,
+    "Bâtiment, Travaux Publics & Aménagement du Territoire": 4321,
+    "Finance, Banque, Assurance, Comptabilité & Fiscalité": 4315,
+    "Commerce, Vente, Marketing & Distribution": 3075,
+    "Informatique, Data, Télécommunications & Digital": 2951,
+    "Parcours Étudiant et Formation": 2057,
+    "Sécurité, Sûreté & Défense": 2021,
+    "Conseil, Stratégie & Gestion des Ressources Humaines": 1935,
+    "Énergie, Environnement & Eau": 1526
+  },
+  "taux_moyen_compatibilite": 0.4248843189663646,
+  "taux_moyen_compatibilite_top1": 0.5511895519169573,
+  "repartition_candidats_par_departement": {
+    "Brazzaville": 19293,
+    "Pointe-Noire": 19031,
+    "Bouenza": 1588,
+    "Autre": 291,
+    "Likouala": 244,
+    "Plateaux": 230,
+    "Niari": 204,
+    "Pool": 134,
+    "Lékoumou": 101,
+    "Kouilou": 73,
+    "Sangha": 61,
+    "Cuvette": 25,
+    "Diaspora (Paris)": 22,
+    "Cuvette-Ouest": 1
+  },
+  "repartition_offres_par_departement": {
+    "Pointe-Noire": 1303,
+    "Brazzaville": 886,
+    "Bouenza": 221,
+    "Kouilou": 74,
+    "Sangha": 24,
+    "Niari": 9,
+    "Cuvette": 6,
+    "Lkouala": 5,
+    "Likouala": 3,
+    "LOANGO": 1,
+    "Plateaux": 1,
+    "NTOKOU": 1,
+    "Cuvette-Ouest": 1
+  },
+  "repartition_genre": {
+    "Homme": 31282,
+    "Femme": 10016
+  },
+  "repartition_niveau_etude": {
+    "Bac": 11742,
+    "Bac +3": 11199,
+    "Secondaire 1": 5899,
+    "Post-secondaire – Professionnel": 4866,
+    "Bac +4/+5 et plus": 4155,
+    "Primaire": 1867,
+    "Aucun": 1427,
+    "Autre": 142,
+    "AUCUN": 1
+  },
+  "repartition_objectif": {
+    "Emploi": 33653,
+    "Stage": 6788,
+    "Formation": 857
+  },
+  "repartition_type_contrat_offres": {
+    "CDD": 1949,
+    "CDI": 403,
+    "Non renseigné": 143,
+    "Stage professionnel": 17,
+    "Contrat d'intérim": 14,
+    "Contrat d'apprentissage": 4,
+    "STAGE": 3,
+    "Contrat de professionnalisation": 1,
+    "Stage en alternance": 1
+  },
+  "score_distribution": {
+    "min": 0.06838556662856524,
+    "max": 0.9538833599136234,
+    "mean": 0.4248843189663646,
+    "median": 0.3496653970425285,
+    "p25": 0.3,
+    "p75": 0.5487254908323664
+  }
+}

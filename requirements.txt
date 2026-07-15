@@ -1,0 +1,10 @@
+pandas
+scikit-learn
+streamlit
+plotly
+openpyxl
+pyarrow
+reportlab
+unidecode
+pypdf
+python-docx

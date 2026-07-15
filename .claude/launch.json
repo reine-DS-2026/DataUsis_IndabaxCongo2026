@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "acpe-matcher-streamlit",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-m", "streamlit", "run", "application/main.py", "--server.headless", "true"],
+      "port": 8501
+    },
+    {
+      "name": "acpe-matcher-api",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-m", "uvicorn", "api.main:app", "--port", "8000"],
+      "port": 8000
+    }
+  ]
+}

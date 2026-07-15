@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.streamlit/secrets.toml
+donnees_generees/*.log
+~$*.docx
+*.tmp
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
