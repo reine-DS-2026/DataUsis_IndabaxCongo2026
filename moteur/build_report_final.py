@@ -12,6 +12,7 @@ from docx.oxml import OxmlElement
 ROOT = r"E:\HACHKATON\Hackaton IndabaX Congo"
 DONNEES_GENEREES = os.path.join(ROOT, "donnees_generees")
 OUT_PATH = os.path.join(ROOT, "Rapport_Methodologique_ACPE_IndabaX2026.docx")
+OUT_PATH_PDF = os.path.join(ROOT, "Rapport_Methodologique_ACPE_IndabaX2026.pdf")
 
 with open(os.path.join(DONNEES_GENEREES, "evaluation_final.json"), encoding="utf-8") as f:
     EVAL = json.load(f)
@@ -174,7 +175,7 @@ p = doc.add_paragraph()
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
 p.paragraph_format.space_after = Pt(8)
-r = p.add_run("Rapport méthodologique — Équipe Reine, Daïna, Emmanuelle, Angélica")
+r = p.add_run("Rapport méthodologique — Équipe DataUsis (Reine, Daïna, Emmanuelle, Angélica)")
 r.font.name = FONT
 r.italic = True
 r.font.size = Pt(10.5)
@@ -315,14 +316,49 @@ add_p(
 )
 
 # ============================================================
-# 6. ACCES DE DEMONSTRATION POUR LE JURY
+# 6. ORGANISATION DU CODE
 # ============================================================
-add_h1("6. Accès de démonstration pour le jury")
+add_h1("6. Organisation du code")
 add_p(
-    "Un compte a été créé pour chacun des trois profils applicatifs, permettant au jury de vérifier "
-    "directement le fonctionnement de l'outil. Le lancement de l'application affiche uniquement la "
-    "page de connexion ; l'accès aux fonctionnalités de chaque profil s'effectue après authentification "
-    "avec les identifiants ci-dessous.",
+    "Le dépôt est structuré en cinq dossiers, séparant les données, la logique du moteur, "
+    "l'interface et les données précalculées, conformément à l'exigence d'un dépôt organisé.",
+    space_after=4,
+)
+add_table(
+    ["Dossier", "Contenu"],
+    [
+        ["data/", "Quatre jeux de données bruts fournis par les organisateurs (fichiers Excel), "
+         "non modifiés."],
+        ["moteur/", "Logique métier : préparation et nettoyage des données (data_prep.py), moteur "
+         "d'appariement à 3 couches (matching.py), calibration des poids et évaluation "
+         "(calibrate_weights.py, evaluation.py, final_evaluation.py), extraction de compétences "
+         "d'un CV (cv_parser.py, skills.py), recherche en langage naturel (search.py), assistant "
+         "contextuel (chatbot.py), authentification (auth.py), export PDF (pdf_report.py)."],
+        ["application/", "Interface Streamlit : point d'entrée unique (main.py), styles et "
+         "composants communs (common.py), une page par profil dans pages/ (login, demandeur, "
+         "recruteur, conseiller), images de fond dans images/."],
+        ["donnees_generees/", "Données précalculées : recommandations pour l'ensemble des "
+         "candidats, statistiques du tableau de bord, résultats d'évaluation, base des comptes "
+         "utilisateurs (SQLite)."],
+        ["api/", "API REST optionnelle exposant le moteur pour un accès programmatique "
+         "(non nécessaire à l'utilisation de l'application)."],
+    ],
+    col_widths=[3.5, 13.0],
+)
+add_p(
+    "L'application se lance avec la commande streamlit run application/main.py.",
+    size=11, space_after=4,
+)
+
+# ============================================================
+# 7. ACCES DE DEMONSTRATION POUR LE JURY
+# ============================================================
+add_h1("7. Accès de démonstration pour le jury")
+add_p(
+    "Un compte a été créé à l'avance pour chacun des trois profils applicatifs : le jury n'a "
+    "besoin de créer aucun compte pour tester l'outil. Le lancement de l'application affiche "
+    "uniquement la page de connexion ; l'accès aux fonctionnalités de chaque profil s'effectue "
+    "directement après authentification avec les identifiants ci-dessous.",
     space_after=4,
 )
 add_table(
@@ -336,15 +372,33 @@ add_table(
 )
 
 # ============================================================
-# 7. POINTS OUVERTS
+# 8. POINTS INNOVANTS
 # ============================================================
-add_h1("7. Points ouverts")
+add_h1("8. Points innovants")
 add_bullets([
-    "Confirmation à obtenir auprès des organisateurs sur l'existence d'un jeu de test externe.",
-    "Diagnostic complémentaire de la qualité du texte libre des 143 offres enrichies, pour arbitrer "
-    "entre TF-IDF et embeddings sémantiques.",
-    "Désambiguïsation manuelle de la référence JOB250002109 avant tout entraînement supervisé futur.",
+    "Reconstruction d'une donnée absente : aucune colonne de localisation n'existait pour les "
+    "candidats ; le département a été déduit du préfixe du Matricule plutôt que d'être ignoré, "
+    "ce qui a rendu possible la couche secteur/localisation pour l'ensemble des candidats.",
+    "Explicabilité par construction : le score n'est pas une boîte noire expliquée a posteriori, "
+    "il est nativement décomposé en trois sous-scores interprétables (secteur/localisation, "
+    "texte, structure), directement restitués à l'utilisateur.",
+    "Pondération calibrée empiriquement : les poids du modèle hybride résultent d'une recherche "
+    "d'hyperparamètres comparant règles seules, texte seul et hybride sur un jeu de validation, "
+    "plutôt que d'un choix arbitraire.",
+    "Accès élargi au-delà du dataset fourni : un candidat absent de la base ACPE peut créer un "
+    "profil en téléversant simplement son CV, dont les compétences sont extraites automatiquement "
+    "et injectées dans le même moteur de recommandation.",
+    "Simulateur d'impact « et si ? » : le candidat peut estimer, avant d'agir, l'effet d'une "
+    "compétence à acquérir ou d'un changement de mobilité sur son score de compatibilité avec une "
+    "offre donnée, transformant le moteur en outil d'orientation proactif plutôt que descriptif.",
 ], size=11)
 
 doc.save(OUT_PATH)
 print("Saved to", OUT_PATH)
+
+try:
+    from docx2pdf import convert
+    convert(OUT_PATH, OUT_PATH_PDF)
+    print("Saved to", OUT_PATH_PDF)
+except Exception as e:
+    print("Conversion PDF non effectuée automatiquement :", e)
